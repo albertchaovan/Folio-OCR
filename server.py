@@ -143,10 +143,10 @@ def _ensure_layout_model():
     if _layout_model is not None:
         return
     import torch
-    from transformers import AutoImageProcessor, AutoModelForObjectDetection
+    from transformers import RTDetrImageProcessor, AutoModelForObjectDetection
     t0 = time.time()
     logger.info(f"[layout] Loading {_LAYOUT_MODEL_NAME}...")
-    _layout_processor = AutoImageProcessor.from_pretrained(_LAYOUT_MODEL_NAME)
+    _layout_processor = RTDetrImageProcessor.from_pretrained(_LAYOUT_MODEL_NAME)
     _layout_model = AutoModelForObjectDetection.from_pretrained(_LAYOUT_MODEL_NAME)
     if torch.cuda.is_available():
         _layout_model.to("cuda")
